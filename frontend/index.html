@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenesisAI Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidePanel">
+            <div class="sidebar-header">
+                <h2><span class="gradient-text">GenesisAI</span> Core</h2>
+            </div>
+            
+            <div class="sidebar-section">
+                <label for="modeSelect">System Mode</label>
+                <select id="modeSelect">
+                    <!-- Populated via API -->
+                </select>
+            </div>
+
+            <div class="sidebar-section">
+                <label for="modelSelect">Language Model</label>
+                <select id="modelSelect">
+                    <!-- Populated via API -->
+                </select>
+            </div>
+
+            <div class="sidebar-section upload-section">
+                <label>Document Context</label>
+                <div class="upload-box">
+                    <input type="file" id="pdfUpload" class="file-input">
+                    <button id="uploadBtn" class="btn btn-secondary">Upload Document</button>
+                </div>
+                <div id="ragStatus" class="status-text"></div>
+            </div>
+
+            <div class="sidebar-section tools-section">
+                <label>Utilities</label>
+                <button onclick="GenesisApp.clearChat()" class="btn btn-outline">Clear Screen</button>
+                <button onclick="GenesisApp.saveConversation()" class="btn btn-outline">Download Chat (.txt)</button>
+                <button onclick="GenesisApp.commitToMemory()" class="btn btn-primary" style="margin-top: 10px;">Commit to Memory</button>
+                <button onclick="GenesisApp.wipeMemory()" class="btn btn-outline" style="margin-top: 10px; border-color: var(--danger); color: var(--danger);">Wipe Database</button>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div id="sessionList"></div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div id="modeHeader" class="mode-badge">MODE: STANDARD CHAT</div>
+                <button id="mobileMenuBtn" class="mobile-menu-btn">☰</button>
+            </header>
+
+            <div id="chatDisplay" class="chat-container">
+                <!-- Welcome Message -->
+                <div class="welcome-screen">
+                    <h1>Welcome to GenesisAI</h1>
+                    <p>Select a mode and start interacting.</p>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <textarea id="chatInput" placeholder="Message your agent..." rows="1"></textarea>
+                    <button id="sendBtn" class="btn btn-primary send-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/frontend/api_helper.js"></script>
+    <script src="/frontend/ui_manager.js"></script>
+    <script src="/frontend/script.js"></script>
+</body>
+</html>
